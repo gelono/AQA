@@ -1,4 +1,4 @@
-from pages.elements_page import TextBoxPage, CheckBoxPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage
 import time
 
 
@@ -24,3 +24,12 @@ class TestElements:
             input_checkbox = check_box_page.get_checked_checkboxes()
             output_result = check_box_page.get_output_result()
             assert input_checkbox == output_result, 'a problem with the checkbox selecting'
+
+
+    class TestRadioButton:
+        def test_radio_button(self, driver):
+            radio_button_page = RadioButtonPage(driver, 'https://demoqa.com/radio-button')
+            radio_button_page.open()
+            selected_button_text, selected_button_text_result = radio_button_page.select_radio_button()
+            for i, j in zip(selected_button_text, selected_button_text_result):
+                assert i == j, f'here is no matching with the value {i}'
