@@ -1,6 +1,6 @@
 import random
 
-from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonsPage
 import time
 
 
@@ -27,7 +27,6 @@ class TestElements:
             output_result = check_box_page.get_output_result()
             assert input_checkbox == output_result, 'a problem with the checkbox selecting'
 
-
     class TestRadioButton:
         def test_radio_button(self, driver):
             radio_button_page = RadioButtonPage(driver, 'https://demoqa.com/radio-button')
@@ -35,7 +34,6 @@ class TestElements:
             selected_button_text, selected_button_text_result = radio_button_page.select_radio_button()
             for i, j in zip(selected_button_text, selected_button_text_result):
                 assert i == j, f'here is no matching with the value {i}'
-
 
     class TestWebTable:
         def test_web_table(self, driver):
@@ -76,5 +74,18 @@ class TestElements:
             web_table_page = WebTablePage(driver, 'https://demoqa.com/webtables')
             web_table_page.open()
             count = web_table_page.select_up_to_some_rows()
-            assert count == [5, 10, 20, 25, 50, 100], 'the number of rows in the table has not been changed or has changed incorrectly'
+            assert count == [5, 10, 20, 25, 50, 100], 'the number of rows in the table has not been changed or has ' \
+                                                      'changed incorrectly '
 
+
+class TestButtonsPage:
+
+    def test_different_click_on_the_buttons(self, driver):
+        button_page = ButtonsPage(driver, 'https://demoqa.com/buttons')
+        button_page.open()
+        double = button_page.click_on_different_button('double')
+        right = button_page.click_on_different_button('right')
+        click = button_page.click_on_different_button('click')
+        assert double == 'You have done a double click', 'the double click does not work'
+        assert right == 'You have done a right click', 'the right click does not work'
+        assert click == 'You have done a dynamic click', 'the dynamic click does not work'
