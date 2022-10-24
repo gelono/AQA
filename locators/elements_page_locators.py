@@ -77,3 +77,10 @@ class FilesPageLocators:
     UPLOAD_FILE = (By.CSS_SELECTOR, '#uploadFile')
     UPLOADED_FILE = (By.CSS_SELECTOR, '#uploadedFilePath')
 
+
+class DynamicPropertiesPageLocators:
+    COLOR_CHANGE_BUTTON = (By.CSS_SELECTOR, '#colorChange')
+    VISIBLE_AFTER_TIME = (By.CSS_SELECTOR, '#visibleAfter')
+    ENABLE_BUTTON = (By.CSS_SELECTOR, '#enableAfter')
+
+
