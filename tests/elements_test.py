@@ -1,6 +1,7 @@
 import random
 
-from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonsPage, LinksPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonsPage, LinksPage, \
+    WorkWithFiles
 import time
 
 
@@ -78,29 +79,44 @@ class TestElements:
                                                       'changed incorrectly '
 
 
-class TestButtonsPage:
+    class TestButtonsPage:
 
-    def test_different_click_on_the_buttons(self, driver):
-        button_page = ButtonsPage(driver, 'https://demoqa.com/buttons')
-        button_page.open()
-        double = button_page.click_on_different_button('double')
-        right = button_page.click_on_different_button('right')
-        click = button_page.click_on_different_button('click')
-        assert double == 'You have done a double click', 'the double click does not work'
-        assert right == 'You have done a right click', 'the right click does not work'
-        assert click == 'You have done a dynamic click', 'the dynamic click does not work'
+        def test_different_click_on_the_buttons(self, driver):
+            button_page = ButtonsPage(driver, 'https://demoqa.com/buttons')
+            button_page.open()
+            double = button_page.click_on_different_button('double')
+            right = button_page.click_on_different_button('right')
+            click = button_page.click_on_different_button('click')
+            assert double == 'You have done a double click', 'the double click does not work'
+            assert right == 'You have done a right click', 'the right click does not work'
+            assert click == 'You have done a dynamic click', 'the dynamic click does not work'
 
 
-class TestLinksPage:
+    class TestLinksPage:
 
-    def test_check_link(self, driver):
-        links_page = LinksPage(driver, 'https://demoqa.com/links')
-        links_page.open()
-        href_link, current_url = links_page.check_new_tab_simple_link()
-        assert href_link == current_url,'the link is broken or url is incorrect'
+        def test_check_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            href_link, current_url = links_page.check_new_tab_simple_link()
+            assert href_link == current_url,'the link is broken or url is incorrect'
 
-    def test_broken_link(self, driver):
-        links_page = LinksPage(driver, 'https://demoqa.com/links')
-        links_page.open()
-        response_code = links_page.check_broken_link('https://demoqa.com/bad-request')
-        assert response_code == 400, 'the link works or the status code is not 400'
+        def test_broken_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            response_code = links_page.check_broken_link('https://demoqa.com/bad-request')
+            assert response_code == 400, 'the link works or the status code is not 400'
+
+
+    class TestWorkWithFiles:
+
+        def test_upload_file(self, driver):
+            work_with_file = WorkWithFiles(driver, 'https://demoqa.com/upload-download')
+            work_with_file.open()
+            file_name, text = work_with_file.upload_file()
+            assert file_name == text, 'the file has not been uploaded or an error in the result message'
+
+        def test_download_file(self, driver):
+            work_with_file = WorkWithFiles(driver, 'https://demoqa.com/upload-download')
+            work_with_file.open()
+            check = work_with_file.download_file()
+            assert check is True, 'the file has not been downloaded'

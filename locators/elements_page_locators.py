@@ -25,14 +25,14 @@ class CheckBoxPageLocators:
     OUTPUT_RESULT = (By.CSS_SELECTOR, "span[class='text-success']")
 
 
-class RadioButtonLocators():
+class RadioButtonLocators:
     RADIO_BUTTON_YES = (By.CSS_SELECTOR, "label[for='yesRadio']")
     RADIO_BUTTON_IMPRESSIVE = (By.CSS_SELECTOR, "label[for='impressiveRadio']")
     RADIO_BUTTON_NO = (By.CSS_SELECTOR, "label[for='noRadio']")
     SELECTED_RESULT = (By.CSS_SELECTOR, "span[class='text-success']")
 
 
-class WebTablesLocators():
+class WebTablesLocators:
     # add person form
     ADD_BUTTON = (By.CSS_SELECTOR, "button[id='addNewRecordButton']")
     FIRST_NAME_INPUT = (By.CSS_SELECTOR, "input[id='firstName']")
@@ -55,7 +55,7 @@ class WebTablesLocators():
     UPDATE_BUTTON = (By.CSS_SELECTOR, "span[title='Edit']")
 
 
-class ButtonsPageLocators():
+class ButtonsPageLocators:
     # buttons
     DOUBLE_BUTTON = (By.CSS_SELECTOR, "button[id='doubleClickBtn']")
     RIGHT_CLICK_BUTTON = (By.CSS_SELECTOR, "button[id='rightClickBtn']")
@@ -67,6 +67,13 @@ class ButtonsPageLocators():
     SUCCESS_CLICK_ME = (By.CSS_SELECTOR, "p[id='dynamicClickMessage']")
 
 
-class LinksPageLocators():
+class LinksPageLocators:
     SIMPLE_LINK = (By.CSS_SELECTOR, "a[id='simpleLink']")
     BAD_REQUEST = (By.CSS_SELECTOR, "a[id='bad-request']")
+
+
+class FilesPageLocators:
+    DOWNLOAD_FILE = (By.CSS_SELECTOR, '#downloadButton')
+    UPLOAD_FILE = (By.CSS_SELECTOR, '#uploadFile')
+    UPLOADED_FILE = (By.CSS_SELECTOR, '#uploadedFilePath')
+
