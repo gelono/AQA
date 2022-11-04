@@ -4,7 +4,7 @@ import time
 from selenium.common import UnexpectedAlertPresentException
 
 from locators.alerts_frame_windows_locators import BrowserWindowsPageLocators, AlertsPageLocators, FramesPageLocators, \
-    NestedFramesPageLocators
+    NestedFramesPageLocators, ModalDialogsPageLocators
 from pages.basepage import BasePage
 
 
@@ -90,3 +90,16 @@ class NestedFramesPage(BasePage):
         child_text = self.is_present(self.locators.CHILD_TEXT).text
 
         return parent_text, child_text
+
+class ModalDialogsPage(BasePage):
+    locators = ModalDialogsPageLocators()
+
+    def check_modal_dialogs(self):
+        self.is_visible(self.locators.SMALL_MODAL_BUTTON).click()
+        title_small = self.is_visible(self.locators.TITLE_SMALL_MODAL).text
+        body_small_text = self.is_visible(self.locators.BODY_SMALL_MODAL).text
+        self.is_visible(self.locators.SMALL_MODAL_BUTTON_CLOSE).click()
+        self.is_visible(self.locators.LARGE_MODAL_BUTTON).click()
+        title_large = self.is_visible(self.locators.TITLE_LARGE_MODAL).text
+        body_large_text = self.is_visible(self.locators.BODY_LARGE_MODAL).text
+        return [title_small, len(body_small_text)], [title_large, len(body_large_text)]
